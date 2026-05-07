@@ -1,4 +1,4 @@
-package Ex;
+package com.vti.backend;
 // Boxing, Unboxing
 public class Ex3 {
     // Question 1: Integer -> float, hiển thị 2 số sau dấu thập phân

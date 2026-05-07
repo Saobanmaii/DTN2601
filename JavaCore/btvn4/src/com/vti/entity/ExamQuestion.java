@@ -1,7 +1,6 @@
-package Entity;
+package com.vti.entity;
 
-public class ExamQuestion
-{
+public class ExamQuestion {
     private Exam exam;
     private Question question;
 
@@ -9,4 +8,10 @@ public class ExamQuestion
         this.exam = exam;
         this.question = question;
     }
+
+    public Exam getExam() { return exam; }
+    public void setExam(Exam exam) { this.exam = exam; }
+
+    public Question getQuestion() { return question; }
+    public void setQuestion(Question question) { this.question = question; }
 }

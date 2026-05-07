@@ -1,4 +1,4 @@
-package Ex;
+package com.vti.backend;
 
 import java.util.Scanner;
 

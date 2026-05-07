@@ -1,4 +1,4 @@
 package com.vti.backend;
 
-public class Ex3 {
+public class Exercise3 {
 }

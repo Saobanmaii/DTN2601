@@ -1,4 +1,4 @@
-import Ex.Ex1;
+import com.vti.backend.Ex1;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.

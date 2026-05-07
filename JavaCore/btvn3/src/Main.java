@@ -1,4 +1,4 @@
-import Ex.*;
+import com.vti.backend.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -25,7 +25,7 @@ public class Main {
 
 
     System.out.println("Chay Ex4");
-        Ex4 .question1();
+        Ex4.question1();
         Ex4.question2();
         Ex4.question3();
         Ex4.question4();

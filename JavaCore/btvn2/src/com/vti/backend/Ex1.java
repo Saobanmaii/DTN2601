@@ -1,4 +1,4 @@
-package Ex;
+package com.vti.backend;
 import Entity.*;
 
 public class Ex1 {
