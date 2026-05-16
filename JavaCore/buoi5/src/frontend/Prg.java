@@ -1,17 +1,17 @@
 package frontend;
 
-import backend.QLAccount;
-import backend.QLDepartment;
-import backend.QLPosition;
+import backend.controller.AccountController;
+import backend.controller.DepartmentController;
+import backend.controller.PositionController;
 
 public class Prg {
 
     public static void main(String[] args) {
-        new QLDepartment().printAll();
+        new DepartmentController().printAll();
         System.out.println();
-        new QLPosition().printAll();
+        new PositionController().printAll();
         System.out.println();
-        new QLAccount().printAll();
+        new AccountController().printAll();
     }
 }
 
