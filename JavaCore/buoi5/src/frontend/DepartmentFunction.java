@@ -1,11 +1,12 @@
 package frontend;
 
-import backend.controller.DepartmentController;
+import backend.controller.IDepartmentController;
+import backend.controller.impl.DepartmentControllerImpl;
 
 import java.util.Scanner;
 
 public class DepartmentFunction {
-    private final DepartmentController controller = new DepartmentController();
+    private final IDepartmentController controller = new DepartmentControllerImpl();
     private final Scanner sc;
 
     public DepartmentFunction(Scanner sc) {

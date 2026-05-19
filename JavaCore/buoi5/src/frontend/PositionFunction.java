@@ -1,13 +1,14 @@
 package frontend;
 
-import backend.controller.PositionController;
+import backend.controller.IPositionController;
+import backend.controller.impl.PositionControllerImpl;
 import enums.PositionName;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class PositionFunction {
-    private final PositionController controller = new PositionController();
+    private final IPositionController controller = new PositionControllerImpl();
     private final Scanner sc;
 
     public PositionFunction(Scanner sc) {

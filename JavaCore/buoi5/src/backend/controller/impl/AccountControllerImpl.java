@@ -1,24 +1,26 @@
-package backend.controller;
+package backend.controller.impl;
 
-import backend.service.IPositionService;
-import backend.service.impl.PositionServiceImpl;
-import entity.Position;
-import enums.PositionName;
+import backend.controller.IAccountController;
+import backend.service.IAccountService;
+import backend.service.impl.AccountServiceImpl;
+import entity.Account;
 
 import java.util.List;
 
-public class PositionController {
-    private final IPositionService service = new PositionServiceImpl();
+public class AccountControllerImpl implements IAccountController {
+    private final IAccountService service = new AccountServiceImpl();
 
-    public void add(PositionName name) {
+    @Override
+    public void add(Account acc) {
         try {
-            service.add(name);
+            service.add(acc);
             System.out.println("Them thanh cong!");
         } catch (IllegalArgumentException e) {
             System.out.println("Loi: " + e.getMessage());
         }
     }
 
+    @Override
     public void deleteById(int id) {
         try {
             service.deleteById(id);
@@ -28,23 +30,26 @@ public class PositionController {
         }
     }
 
-    public void update(int id, PositionName newName) {
+    @Override
+    public void updateUsernameById(int id, String newUsername) {
         try {
-            service.update(id, newName);
+            service.updateUsernameById(id, newUsername);
             System.out.println("Sua thanh cong!");
         } catch (IllegalArgumentException e) {
             System.out.println("Loi: " + e.getMessage());
         }
     }
 
+    @Override
     public void printAll() {
-        List<Position> list = service.findAll();
-        System.out.println("===== DANH SACH CHUC VU =====");
+        List<Account> list = service.findAll();
+        System.out.println("===== DANH SACH TAI KHOAN =====");
         list.forEach(System.out::println);
     }
 
+    @Override
     public void search(String name) {
-        List<Position> list = service.findByName(name);
+        List<Account> list = service.findByName(name);
         if (list.isEmpty()) System.out.println("Khong tim thay ket qua.");
         else list.forEach(System.out::println);
     }

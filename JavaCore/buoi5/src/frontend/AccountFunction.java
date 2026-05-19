@@ -1,6 +1,7 @@
 package frontend;
 
-import backend.controller.AccountController;
+import backend.controller.IAccountController;
+import backend.controller.impl.AccountControllerImpl;
 import entity.Account;
 import entity.Department;
 import entity.Position;
@@ -8,7 +9,7 @@ import entity.Position;
 import java.util.Scanner;
 
 public class AccountFunction {
-    private final AccountController controller = new AccountController();
+    private final IAccountController controller = new AccountControllerImpl();
     private final Scanner sc;
 
     public AccountFunction(Scanner sc) {
