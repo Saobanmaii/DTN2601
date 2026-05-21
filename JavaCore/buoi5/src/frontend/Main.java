@@ -1,5 +1,7 @@
 package frontend;
 
+import utils.ScannerUtils;
+
 import java.util.Scanner;
 
 public class Main {
@@ -16,8 +18,7 @@ public class Main {
             System.out.println("2. Quan ly Tai khoan");
             System.out.println("3. Quan ly Chuc vu");
             System.out.println("0. Thoat");
-            System.out.print("Chon: ");
-            choice = Integer.parseInt(sc.nextLine().trim());
+            choice = ScannerUtils.readInt(sc, "Chon: ");
 
             switch (choice) {
                 case 1:

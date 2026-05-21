@@ -1,6 +1,7 @@
 package backend.repository;
 
 import entity.Account;
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IAccountRepository {
@@ -15,4 +16,5 @@ public interface IAccountRepository {
     boolean existsByUsernameExcludingId(String username, int id);
     boolean departmentExists(int departmentId);
     boolean positionExists(int positionId);
+    void batchInsert(List<Account> accounts) throws SQLException;
 }

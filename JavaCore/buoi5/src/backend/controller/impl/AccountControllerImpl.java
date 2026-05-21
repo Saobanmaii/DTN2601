@@ -53,4 +53,9 @@ public class AccountControllerImpl implements IAccountController {
         if (list.isEmpty()) System.out.println("Khong tim thay ket qua.");
         else list.forEach(System.out::println);
     }
+
+    @Override
+    public void importFromFile(String filePath) {
+        service.importFromFile(filePath);
+    }
 }

@@ -3,6 +3,7 @@ package frontend;
 import backend.controller.IPositionController;
 import backend.controller.impl.PositionControllerImpl;
 import enums.PositionName;
+import utils.ScannerUtils;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -25,35 +26,29 @@ public class PositionFunction {
             System.out.println("4. Xoa chuc vu theo ID");
             System.out.println("5. Tim kiem theo ten");
             System.out.println("0. Quay lai");
-            System.out.print("Chon: ");
-            choice = Integer.parseInt(sc.nextLine().trim());
+            choice = ScannerUtils.readInt(sc, "Chon: ");
 
             switch (choice) {
                 case 1:
                     controller.printAll();
                     break;
                 case 2:
-                    PositionName name2 = inputPositionName();
-                    if (name2 != null) {
-                        controller.add(name2);
-                    }
+                    System.out.println("Cac chuc vu co the chon: " + Arrays.toString(PositionName.values()));
+                    PositionName name2 = ScannerUtils.readEnum(sc, "Nhap ten chuc vu: ", PositionName.class);
+                    if (name2 != null) controller.add(name2);
                     break;
                 case 3:
-                    System.out.print("Nhap ID chuc vu can sua: ");
-                    int id3 = Integer.parseInt(sc.nextLine().trim());
-                    PositionName name3 = inputPositionName();
-                    if (name3 != null) {
-                        controller.update(id3, name3);
-                    }
+                    int id3 = ScannerUtils.readInt(sc, "Nhap ID chuc vu can sua: ");
+                    System.out.println("Cac chuc vu co the chon: " + Arrays.toString(PositionName.values()));
+                    PositionName name3 = ScannerUtils.readEnum(sc, "Nhap ten chuc vu moi: ", PositionName.class);
+                    if (name3 != null) controller.update(id3, name3);
                     break;
                 case 4:
-                    System.out.print("Nhap ID chuc vu can xoa: ");
-                    int id4 = Integer.parseInt(sc.nextLine().trim());
+                    int id4 = ScannerUtils.readInt(sc, "Nhap ID chuc vu can xoa: ");
                     controller.deleteById(id4);
                     break;
                 case 5:
-                    System.out.print("Nhap tu khoa tim kiem: ");
-                    String kw5 = sc.nextLine().trim();
+                    String kw5 = ScannerUtils.readString(sc, "Nhap tu khoa tim kiem: ");
                     controller.search(kw5);
                     break;
                 case 0:
@@ -63,17 +58,5 @@ public class PositionFunction {
                     System.out.println("Lua chon khong hop le!");
             }
         } while (choice != 0);
-    }
-
-    private PositionName inputPositionName() {
-        System.out.println("Cac chuc vu co the chon: " + Arrays.toString(PositionName.values()));
-        System.out.print("Nhap ten chuc vu: ");
-        String input = sc.nextLine().trim().toUpperCase();
-        try {
-            return PositionName.valueOf(input);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Ten chuc vu khong hop le!");
-            return null;
-        }
     }
 }

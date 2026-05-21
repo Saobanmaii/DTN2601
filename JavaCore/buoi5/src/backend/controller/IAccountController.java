@@ -8,4 +8,5 @@ public interface IAccountController {
     void updateUsernameById(int id, String newUsername);
     void printAll();
     void search(String name);
+    void importFromFile(String filePath);
 }

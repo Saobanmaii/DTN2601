@@ -9,4 +9,5 @@ public interface IAccountService {
     void updateUsernameById(int id, String newUsername);
     List<Account> findAll();
     List<Account> findByName(String name);
+    void importFromFile(String filePath);
 }

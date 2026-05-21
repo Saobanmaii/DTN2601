@@ -5,6 +5,7 @@ import backend.controller.impl.AccountControllerImpl;
 import entity.Account;
 import entity.Department;
 import entity.Position;
+import utils.ScannerUtils;
 
 import java.util.Scanner;
 
@@ -25,9 +26,9 @@ public class AccountFunction {
             System.out.println("3. Sua username theo ID");
             System.out.println("4. Xoa tai khoan theo ID");
             System.out.println("5. Tim kiem theo ten");
+            System.out.println("6. Import account tu file CSV");
             System.out.println("0. Quay lai");
-            System.out.print("Chon: ");
-            choice = Integer.parseInt(sc.nextLine().trim());
+            choice = ScannerUtils.readInt(sc, "Chon: ");
 
             switch (choice) {
                 case 1:
@@ -38,21 +39,21 @@ public class AccountFunction {
                     controller.add(acc2);
                     break;
                 case 3:
-                    System.out.print("Nhap ID tai khoan can sua: ");
-                    int id3 = Integer.parseInt(sc.nextLine().trim());
-                    System.out.print("Nhap username moi: ");
-                    String newUsername3 = sc.nextLine();
+                    int id3 = ScannerUtils.readInt(sc, "Nhap ID tai khoan can sua: ");
+                    String newUsername3 = ScannerUtils.readString(sc, "Nhap username moi: ");
                     controller.updateUsernameById(id3, newUsername3);
                     break;
                 case 4:
-                    System.out.print("Nhap ID tai khoan can xoa: ");
-                    int id4 = Integer.parseInt(sc.nextLine().trim());
+                    int id4 = ScannerUtils.readInt(sc, "Nhap ID tai khoan can xoa: ");
                     controller.deleteById(id4);
                     break;
                 case 5:
-                    System.out.print("Nhap tu khoa tim kiem: ");
-                    String kw5 = sc.nextLine();
+                    String kw5 = ScannerUtils.readString(sc, "Nhap tu khoa tim kiem: ");
                     controller.search(kw5);
+                    break;
+                case 6:
+                    String path6 = ScannerUtils.readString(sc, "Nhap duong dan file CSV: ");
+                    controller.importFromFile(path6);
                     break;
                 case 0:
                     System.out.println("Quay lai menu chinh...");
@@ -64,20 +65,15 @@ public class AccountFunction {
     }
 
     private Account inputAccount() {
-        System.out.print("Username: ");
-        String username = sc.nextLine();
-        System.out.print("Full Name: ");
-        String fullName = sc.nextLine();
-        System.out.print("Email: ");
-        String email = sc.nextLine();
+        String username = ScannerUtils.readString(sc, "Username: ");
+        String fullName = ScannerUtils.readString(sc, "Full Name: ");
+        String email = ScannerUtils.readString(sc, "Email: ");
 
-        System.out.print("Department ID: ");
-        String deptInput = sc.nextLine().trim();
-        Department dept = deptInput.isEmpty() ? null : new Department(Integer.parseInt(deptInput), "");
+        Integer deptId = ScannerUtils.readOptionalInt(sc, "Department ID (bo trong neu khong co): ");
+        Department dept = deptId != null ? new Department(deptId, "") : null;
 
-        System.out.print("Position ID: ");
-        String posInput = sc.nextLine().trim();
-        Position pos = posInput.isEmpty() ? null : new Position(Integer.parseInt(posInput), null);
+        Integer posId = ScannerUtils.readOptionalInt(sc, "Position ID (bo trong neu khong co): ");
+        Position pos = posId != null ? new Position(posId, null) : null;
 
         Account acc = new Account();
         acc.setUsername(username);

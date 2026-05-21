@@ -183,6 +183,33 @@ public class AccountRepositoryImpl implements IAccountRepository {
         return false;
     }
 
+    @Override
+    public void batchInsert(List<Account> accounts) throws SQLException {
+        String sql = "INSERT INTO account (email, username, fullName, createDate, departmentID, positionID) VALUES (?,?,?,?,?,?)";
+        Connection conn = JDBCUtils.getConnection();
+        try {
+            conn.setAutoCommit(false);
+            PreparedStatement ps = conn.prepareStatement(sql);
+            for (Account acc : accounts) {
+                ps.setString(1, acc.getEmail());
+                ps.setString(2, acc.getUsername());
+                ps.setString(3, acc.getFullName());
+                ps.setDate(4, Date.valueOf(LocalDate.now()));
+                ps.setObject(5, acc.getDepartment() != null ? acc.getDepartment().getDepartmentID() : null);
+                ps.setObject(6, acc.getPosition() != null ? acc.getPosition().getPositionID() : null);
+                ps.addBatch();
+            }
+            ps.executeBatch();
+            conn.commit();
+            ps.close();
+        } catch (SQLException e) {
+            conn.rollback();
+            throw e;
+        } finally {
+            conn.close();
+        }
+    }
+
     private Account buildAccount(ResultSet rs) throws SQLException {
         Department dept = new Department(rs.getInt("departmentID"), rs.getString("departmentName"));
         Position pos = null;

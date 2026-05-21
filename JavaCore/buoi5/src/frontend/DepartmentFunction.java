@@ -2,6 +2,7 @@ package frontend;
 
 import backend.controller.IDepartmentController;
 import backend.controller.impl.DepartmentControllerImpl;
+import utils.ScannerUtils;
 
 import java.util.Scanner;
 
@@ -27,33 +28,27 @@ public class DepartmentFunction {
             System.out.println("8. Chuc vu co nhieu nhan vien nhat");
             System.out.println("9. Chuc vu co it nhan vien nhat");
             System.out.println("0. Quay lai");
-            System.out.print("Chon: ");
-            choice = Integer.parseInt(sc.nextLine().trim());
+            choice = ScannerUtils.readInt(sc, "Chon: ");
 
             switch (choice) {
                 case 1:
                     controller.printAll();
                     break;
                 case 2:
-                    System.out.print("Nhap ten phong ban: ");
-                    String name2 = sc.nextLine();
+                    String name2 = ScannerUtils.readString(sc, "Nhap ten phong ban: ");
                     controller.add(name2);
                     break;
                 case 3:
-                    System.out.print("Nhap ID phong ban can sua: ");
-                    int id3 = Integer.parseInt(sc.nextLine().trim());
-                    System.out.print("Nhap ten moi: ");
-                    String newName3 = sc.nextLine();
+                    int id3 = ScannerUtils.readInt(sc, "Nhap ID phong ban can sua: ");
+                    String newName3 = ScannerUtils.readString(sc, "Nhap ten moi: ");
                     controller.update(id3, newName3);
                     break;
                 case 4:
-                    System.out.print("Nhap ID phong ban can xoa: ");
-                    int id4 = Integer.parseInt(sc.nextLine().trim());
+                    int id4 = ScannerUtils.readInt(sc, "Nhap ID phong ban can xoa: ");
                     controller.deleteById(id4);
                     break;
                 case 5:
-                    System.out.print("Nhap tu khoa tim kiem: ");
-                    String kw5 = sc.nextLine();
+                    String kw5 = ScannerUtils.readString(sc, "Nhap tu khoa tim kiem: ");
                     controller.search(kw5);
                     break;
                 case 6:
